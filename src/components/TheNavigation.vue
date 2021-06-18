@@ -33,7 +33,10 @@
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-            <router-link :to="{ name: 'Cart' }">
+            <router-link
+              :to="{ name: 'Cart' }"
+              class="bg-gray-200 p-0 focus:p-0 focus:m-0 m-0"
+            >
               <button
                 class="
                   p-1
@@ -43,7 +46,7 @@
                   focus:outline-none
                   focus:ring-2
                   focus:ring-offset-2
-                  focus:ring-offset-gray-800
+                  focus:ring-offset-gray-900
                   focus:ring-white
                 "
               >
@@ -58,7 +61,8 @@
                 <MenuButton
                   class="
                     max-w-xs
-                    bg-gray-600
+                    text-gray-600
+                    bg-gray-200
                     rounded-full
                     flex
                     items-center
@@ -66,7 +70,7 @@
                     focus:outline-none
                     focus:ring-2
                     focus:ring-offset-2
-                    focus:ring-offset-gray-800
+                    focus:ring-offset-gray-600
                     focus:ring-white
                   "
                 >
@@ -124,14 +128,14 @@
           <!-- Mobile menu button -->
           <DisclosureButton
             class="
-              bg-gray-600
+              bg-gray-200
               inline-flex
               items-center
               justify-center
               p-2
               rounded-md
-              text-gray-400
-              hover:text-white hover:bg-gray-700
+              text-gray-600
+              hover:text-white hover:bg-gray-400
               focus:outline-none
               focus:ring-2
               focus:ring-offset-2
@@ -183,10 +187,24 @@
           </div>
           <router-link
             :to="{ name: 'Cart' }"
-            class="ml-auto rounded-full hover:bg-gray-600"
+            class="ml-auto bg-gray-200 p-0 focus:p-0 focus:m-0 m-0"
           >
-            <span class="sr-only">Cart</span>
-            <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
+            <button
+              class="
+                p-1
+                rounded-full
+                text-gray-600
+                hover:text-gray-900
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-offset-gray-900
+                focus:ring-white
+              "
+            >
+              <span class="sr-only">Cart</span>
+              <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
+            </button>
           </router-link>
         </div>
         <div class="mt-3 px-2 space-y-1">

@@ -9175,6 +9175,13 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-paystack@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/vue-paystack/-/vue-paystack-2.0.4.tgz#0da3428b4c020d2f14a6b25cd3c3b3a1d01a5b40"
+  integrity sha512-EwIvuWpQ5MuvKjqv3AZ0NqHdFHZrUGynUn6aCAi1pj62mazBCVUZk/I0ISnPKVIM39weUUUIDUEXIKhJcezT7w==
+  dependencies:
+    vue "^2.6.7"
+
 vue-router@^4.0.0-0:
   version "4.0.8"
   resolved "https://registry.nlark.com/vue-router/download/vue-router-4.0.8.tgz#55d4290a3122444edbc91a3cd2492bb1d0cef494"
@@ -9213,6 +9220,11 @@ vue@^2.6.10:
   version "2.6.13"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.13.tgz#94b2c1b31fddf1dfcc34f28ec848ba8f01ea4c5b"
   integrity sha512-O+pAdJkce1ooYS1XyoQtpBQr9An+Oys3w39rkqxukVO3ZD1ilYJkWBGoRuadiQEm2LLJnCL2utV4TMSf52ubjw==
+
+vue@^2.6.7:
+  version "2.6.14"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
+  integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==
 
 vue@^3.0.0:
   version "3.0.11"

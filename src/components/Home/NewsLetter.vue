@@ -1,6 +1,6 @@
 <template>
   <div class="bg-blue-200 px-12 sm:px-6 py-6 mt-12">
-    <p v-if="verify" class="text-sm text-red-500 text-center">
+    <p v-if="verify" class="text-sm text-red-500 text-center italics">
       Input a valid email
     </p>
     <form class="w-full md:w-3/4 mx-auto" @submit.prevent="submit">

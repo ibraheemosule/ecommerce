@@ -81,8 +81,9 @@
         <p class="uppercase text-gray-600">
           Total amount: <span class="text-red-600 font-bold">1223</span>
         </p>
-        <router-link :to="{ name: Cart }" class="p-0">
+        <router-link :to="{ name: Homepage }" class="p-0">
           <button
+            @click="checkout"
             class="
               mt-5
               border-2 border-solid border-green-400
@@ -106,13 +107,18 @@
 
 <script>
 import { reactive, toRefs } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const data = reactive({});
+    const router = useRouter();
+
+    const checkout = () => router.push("/checkout");
 
     return {
       ...toRefs(data),
+      checkout,
     };
   },
 };
