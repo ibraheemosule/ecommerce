@@ -6,7 +6,7 @@
 
 <script>
 import HomeBody from "@/components/Home/HomeBody.vue";
-import { reactive, toRefs, computed } from "vue";
+import { reactive, toRefs } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -17,10 +17,9 @@ export default {
     const store = useStore();
     const data = reactive({
       first: "another",
-      shirt: computed(() => store.getters.shirt),
     });
     (function () {
-      return store.dispatch("fetchApi");
+      return store.dispatch("firstModule/fetchApi");
     })();
     return {
       ...toRefs(data),

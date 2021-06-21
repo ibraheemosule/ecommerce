@@ -2,19 +2,10 @@
   <VueAgile :autoplay="true" :autoplaySpeed="3000" :options="options">
     <div class="slide w-full flex">
       <div
-        class="
-          carousel
-          w-full
-          h-full
-          bg-yellow-500
-          relative
-          flex
-          justify-center
-          items-center
-        "
+        class="carousel w-full h-full relative flex justify-center items-center"
       >
         <img
-          src="@/assets/Images/about.jpg"
+          src="@/assets/Images/Shoes.jpg"
           class="
             carousel_image
             absolute
@@ -30,15 +21,15 @@
         />
         <h3
           class="
-            md:w-1/2
+            w-9/12
             text-center
-            mt-52
+            mt-32
             text-3xl text-gray-200
             sm:text-6xl
             font-bold
           "
         >
-          Best Shoe Deals
+          Explore Our Shoes, Available In Different Sizes
         </h3>
       </div>
     </div>
@@ -56,7 +47,7 @@
         "
       >
         <img
-          src="@/assets/Images/two.jpg"
+          src="@/assets/Images/Shirts.jpg"
           class="
             carousel_image
             absolute
@@ -72,15 +63,15 @@
         />
         <h3
           class="
-            md:w-1/2
+            w-9/12
             text-center
-            mt-52
+            mt-32
             text-3xl text-gray-200
             sm:text-6xl
             font-bold
           "
         >
-          Best Shoe Deals
+          We Have The Best Casual and Corporate Shirts
         </h3>
       </div>
     </div>
@@ -98,7 +89,7 @@
         "
       >
         <img
-          src="@/assets/Images/three.jpg"
+          src="@/assets/Images/Trouser.jpg"
           class="
             carousel_image
             absolute
@@ -114,22 +105,64 @@
         />
         <h3
           class="
-            md:w-1/2
+            w-9/12
             text-center
-            mt-52
+            mt-32
             text-3xl text-gray-200
             sm:text-6xl
             font-bold
           "
         >
-          Best Shoe Deals
+          Fitting Pants To Match Your Shirt Selection
+        </h3>
+      </div>
+    </div>
+    <div class="slide w-full flex">
+      <div
+        class="
+          carousel
+          w-full
+          h-full
+          bg-yellow-500
+          relative
+          flex
+          justify-center
+          items-center
+        "
+      >
+        <img
+          src="@/assets/Images/Cap.jpg"
+          class="
+            carousel_image
+            absolute
+            top-0
+            object-cover
+            left-0
+            md:h-auto
+            h-full
+            w-full
+            opacity-20
+          "
+          alt="hot deals"
+        />
+        <h3
+          class="
+            w-9/12
+            text-center
+            mt-32
+            text-3xl text-gray-200
+            sm:text-6xl
+            font-bold
+          "
+        >
+          Perfect Your Appearance With Our Befitting Caps
         </h3>
       </div>
     </div>
   </VueAgile>
 </template>
 <script>
-import { toRefs, reactive } from "vue";
+import { toRefs, reactive, computed } from "vue";
 import { useStore } from "vuex";
 import { VueAgile } from "vue-agile";
 
@@ -142,7 +175,7 @@ export default {
     const store = useStore();
     const data = reactive({
       comment: "this is my comment",
-      shoe: store.state.shoes,
+      carouselSlide: computed(() => store.getters["firstModule/carouselSlide"]),
       myOptions: {
         navButtons: false,
 
@@ -165,6 +198,9 @@ export default {
         ],
       },
     });
+    const slid = async () =>
+      await console.log(data.carouselSlide, "this is a man of a man");
+    slid();
 
     return {
       ...toRefs(data),
@@ -179,7 +215,7 @@ export default {
 }
 .carousel {
   z-index: 1;
-  background: rgb(66, 66, 66);
+  background: rgba(66, 66, 66);
 }
 .overlay {
   z-index: 100;
@@ -200,7 +236,7 @@ div.agile {
     }
     .agile__nav-button--prev {
       position: absolute;
-      top: 50%;
+      top: 40%;
       font-size: 2.5em;
       opacity: 0.3;
     }
@@ -210,11 +246,17 @@ div.agile {
     }
     .agile__nav-button--next {
       position: absolute;
-      top: 50%;
+      top: 40%;
       right: 0;
       font-size: 2.5em;
       opacity: 0.3;
     }
+  }
+}
+@media (max-width: 768px) {
+  .agile__nav-button--prev,
+  .agile__nav-button--next {
+    display: none;
   }
 }
 </style>
