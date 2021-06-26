@@ -5,167 +5,56 @@
       <hr class="w-16 mt-4 border-1 border-solid border-gray-400 mx-auto" />
     </h2>
     <div class="shirt-trousers flex justify-around flex-wrap">
-      <div
-        class="
-          shirt
-          md:w-1/6
-          sm:w-64 sm:mx-2
-          mb-16
-          flex flex-col
-          items-center
-          text-red-900
-        "
-      >
-        <div
-          class="
-            imgContainer
-            rounded-full
-            border-solid
-            overflow-hidden
-            xl:w-64
-            lg:w-48
-            md:w-40
-            w-64
-            h-auto
-          "
-        >
-          <img
-            class="max-w-full max-h-full"
-            src="@/assets/Images/three.jpg"
-            alt="shoe"
-          />
-        </div>
-        <div class="bg-blue-200 border-solid rounded-lg my-6 p-6">
-          <h4 class="sm:text-xl text-lg uppercase text-center font-bold">
-            Shoes
-            <hr
-              class="w-6 mt-2 border-1 border-solid border-gray-400 mx-auto"
-            />
-          </h4>
-          <p class="description my-3 text-gray-600">
-            We have the best shoes for that matches different occasions, ranging
-            from sneaker to corporates
-          </p>
-        </div>
-      </div>
-      <div
-        class="shirt md:w-1/6 sm:w-64 sm:mx-2 mb-16 flex flex-col items-center"
-      >
-        <div
-          class="
-            imgContainer
-            rounded-full
-            border-solid
-            overflow-hidden
-            xl:w-64
-            lg:w-48
-            md:w-40
-            w-64
-            h-auto
-          "
-        >
-          <img
-            class="max-w-full max-h-full"
-            src="@/assets/Images/three.jpg"
-            alt="shoe"
-          />
-        </div>
-        <div class="bg-blue-200 border-solid rounded-lg my-6 p-6 text-red-900">
-          <h4 class="sm:text-xl text-lg uppercase text-center font-bold">
-            Shoes
-            <hr
-              class="w-6 mt-2 border-1 border-solid border-gray-400 mx-auto"
-            />
-          </h4>
-          <p class="description my-3 text-gray-600">
-            We have the best shoes for that matches different occasions, ranging
-            from sneaker to corporates
-          </p>
-        </div>
-      </div>
-      <div
-        class="shirt md:w-1/6 sm:w-64 sm:mx-2 mb-16 flex flex-col items-center"
-      >
-        <div
-          class="
-            imgContainer
-            rounded-full
-            border-solid
-            overflow-hidden
-            xl:w-64
-            lg:w-48
-            md:w-40
-            w-64
-            h-auto
-          "
-        >
-          <img
-            class="max-w-full max-h-full"
-            src="@/assets/Images/three.jpg"
-            alt="shoe"
-          />
-        </div>
-        <div class="bg-blue-200 border-solid rounded-lg my-6 p-6 text-red-900">
-          <h4 class="sm:text-xl text-lg uppercase text-center font-bold">
-            Shoes
-            <hr
-              class="w-6 mt-2 border-1 border-solid border-gray-400 mx-auto"
-            />
-          </h4>
-          <p class="description my-3 text-gray-600">
-            We have the best shoes for that matches different occasions, ranging
-            from sneaker to corporates
-          </p>
-        </div>
-      </div>
-      <div
-        class="shirt md:w-1/6 sm:w-64 sm:mx-2 mb-16 flex flex-col items-center"
-      >
-        <div
-          class="
-            imgContainer
-            rounded-full
-            border-solid
-            overflow-hidden
-            xl:w-64
-            lg:w-48
-            md:w-40
-            w-64
-            h-auto
-          "
-        >
-          <img
-            class="max-w-full max-h-full"
-            src="@/assets/Images/three.jpg"
-            alt="shoe"
-          />
-        </div>
-        <div class="bg-blue-200 border-solid rounded-lg my-6 p-6 text-red-900">
-          <h4 class="sm:text-xl text-lg uppercase text-center font-bold">
-            Shoes
-            <hr
-              class="w-6 mt-2 border-1 border-solid border-gray-400 mx-auto"
-            />
-          </h4>
-          <p class="description my-3 text-gray-600">
-            We have the best shoes for that matches different occasions, ranging
-            from sneaker to corporates
-          </p>
-        </div>
-      </div>
+      <ProductCard
+        item="Shirt"
+        :description="description[0]"
+        :itemImage="shirtImage"
+      />
+      <ProductCard
+        item="Pant"
+        :description="description[2]"
+        :itemImage="pantImage"
+      />
+      <ProductCard
+        item="Shoe"
+        :description="description[1]"
+        :itemImage="shoeImage"
+      />
+      <ProductCard
+        item="Cap"
+        :description="description[3]"
+        :itemImage="capImage"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, computed } from "vue";
+import ProductCard from "./ProductCard.vue";
+import { useStore } from "vuex";
 
 export default {
+  components: {
+    ProductCard,
+  },
   setup() {
-    const state = reactive({});
+    const store = useStore();
+    const data = reactive({
+      shirtImage: computed(() => store.state.firstModule.allShirts[2]),
+      pantImage: computed(() => store.state.firstModule.allPants[3]),
+      shoeImage: computed(() => store.state.firstModule.allShoes[1]),
+      capImage: computed(() => store.state.firstModule.allCaps[4]),
+      description: [
+        "We have the best shirts for various occasions ranging from casuals to corporate styles",
+        "Our range of shoe collections makes it easy for you to pick a befitting footwear to compliment your dress style",
+        "We offer the best and affordable pants to compliment yourshirt selection",
+        "Our unisex caps are perfect for any casual outfits",
+      ],
+    });
 
     return {
-      ...toRefs(state),
+      ...toRefs(data),
     };
   },
 };

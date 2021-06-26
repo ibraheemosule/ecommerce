@@ -39,6 +39,7 @@
             >
               <button
                 class="
+                  flex
                   p-1
                   rounded-full
                   text-gray-600
@@ -52,6 +53,9 @@
               >
                 <span class="sr-only">Cart</span>
                 <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
+                <span class="text-xs ml-1 text-red-600">{{
+                  selectedProducts ? selectedProducts : ""
+                }}</span>
               </button>
             </router-link>
 
@@ -191,6 +195,7 @@
           >
             <button
               class="
+                flex
                 p-1
                 rounded-full
                 text-gray-600
@@ -204,6 +209,9 @@
             >
               <span class="sr-only">Cart</span>
               <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
+              <span class="text-xs ml-1 text-red-600">{{
+                selectedProducts ? selectedProducts : ""
+              }}</span>
             </button>
           </router-link>
         </div>
@@ -242,7 +250,8 @@ import {
 } from "@headlessui/vue";
 import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 import { ShoppingCartIcon } from "@heroicons/vue/solid";
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -258,10 +267,14 @@ export default {
     XIcon,
   },
   setup() {
+    const store = useStore();
     const data = reactive({
       navigation: ["Homepage", "About Us", "Our Products", "Contact Us"],
       profile: ["Profile", "Sign Out"],
       open: false,
+      selectedProducts: computed(
+        () => store.state.firstModule.selectedProducts.length
+      ),
     });
     return {
       ...toRefs(data),

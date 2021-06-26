@@ -24,7 +24,7 @@
             w-9/12
             text-center
             mt-32
-            text-3xl text-gray-200
+            text-3xl text-blue-200
             sm:text-6xl
             font-bold
           "
@@ -66,7 +66,7 @@
             w-9/12
             text-center
             mt-32
-            text-3xl text-gray-200
+            text-3xl text-blue-200
             sm:text-6xl
             font-bold
           "
@@ -108,7 +108,7 @@
             w-9/12
             text-center
             mt-32
-            text-3xl text-gray-200
+            text-3xl text-blue-200
             sm:text-6xl
             font-bold
           "
@@ -150,7 +150,7 @@
             w-9/12
             text-center
             mt-32
-            text-3xl text-gray-200
+            text-3xl text-blue-200
             sm:text-6xl
             font-bold
           "
@@ -162,8 +162,7 @@
   </VueAgile>
 </template>
 <script>
-import { toRefs, reactive, computed } from "vue";
-import { useStore } from "vuex";
+import { toRefs, reactive } from "vue";
 import { VueAgile } from "vue-agile";
 
 export default {
@@ -172,10 +171,7 @@ export default {
   },
 
   setup() {
-    const store = useStore();
     const data = reactive({
-      comment: "this is my comment",
-      carouselSlide: computed(() => store.getters["firstModule/carouselSlide"]),
       myOptions: {
         navButtons: false,
 
@@ -198,9 +194,6 @@ export default {
         ],
       },
     });
-    const slid = async () =>
-      await console.log(data.carouselSlide, "this is a man of a man");
-    slid();
 
     return {
       ...toRefs(data),
@@ -228,7 +221,7 @@ export default {
 <style lang="scss">
 div.agile {
   position: relative;
-  color: #e5e7eb;
+  color: #bfdbfe;
   .agile__actions {
     font: {
       size: 2em;

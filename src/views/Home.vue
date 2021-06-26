@@ -15,9 +15,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const data = reactive({
-      first: "another",
-    });
+    const data = reactive({});
     (function () {
       return store.dispatch("firstModule/fetchApi");
     })();
