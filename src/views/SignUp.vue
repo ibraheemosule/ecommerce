@@ -77,7 +77,7 @@
             py-1
             px-3
             sm:w-72
-            w-full
+            w-fullz
             focus:outline-none
           "
           type="text"
@@ -121,7 +121,6 @@
             px-2
             py-1
             font-bold
-            bg-gray-300
             text-gray-600
             hover:bg-gray-400 hover:text-red-900 hover:border-gray-400
           "
