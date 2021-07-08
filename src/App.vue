@@ -19,6 +19,7 @@ export default {
 };
 </script>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 body {
   font-family: "Lato", sans-serif !important;
   letter-spacing: 0.1em;
