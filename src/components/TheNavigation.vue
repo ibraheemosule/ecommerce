@@ -59,7 +59,6 @@
               </button>
             </router-link>
 
-            <!-- Profile dropdown -->
             <Menu as="div" class="ml-3 relative">
               <div>
                 <MenuButton
@@ -129,7 +128,6 @@
           </div>
         </div>
         <div class="-mr-2 flex md:hidden">
-          <!-- Mobile menu button -->
           <DisclosureButton
             class="
               bg-gray-200
