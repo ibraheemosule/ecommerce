@@ -11,10 +11,12 @@
     <hr class="w-16 mt-4 border-1 border-solid border-gray-400 mx-auto" />
   </h2>
   <article class="hot-deals mx-8 mb-12 mt-4 flex flex-wrap justify-around">
-    <hot-deal-card :image="shirtImage" item="Shirt" />
-    <hot-deal-card :image="pantImage" item="Pant" />
-    <hot-deal-card :image="shoeImage" item="Shoe" />
-    <hot-deal-card :image="capImage" item="Cap" />
+    <hot-deal-card
+      v-for="hotdeal in hotdeals"
+      :key="hotdeal.item"
+      :image="hotdeal.image"
+      :item="hotdeal.item"
+    />
   </article>
 </template>
 
@@ -30,10 +32,24 @@ export default {
   setup() {
     const store = useStore();
     const state = reactive({
-      shirtImage: computed(() => store.state.firstModule.allShirts[4]),
-      pantImage: computed(() => store.state.firstModule.allPants[2]),
-      shoeImage: computed(() => store.state.firstModule.allShoes[4]),
-      capImage: computed(() => store.state.firstModule.allCaps[1]),
+      hotdeals: computed(() => [
+        {
+          item: "Shirts",
+          image: store.state.firstModule.allShirts[4],
+        },
+        {
+          item: "Pants",
+          image: store.state.firstModule.allPants[2],
+        },
+        {
+          item: "Shoes",
+          image: store.state.firstModule.allShoes[4],
+        },
+        {
+          item: "Caps",
+          image: store.state.firstModule.allCaps[1],
+        },
+      ]),
     });
 
     return {

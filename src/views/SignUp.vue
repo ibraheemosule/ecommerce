@@ -13,103 +13,191 @@
         Sign Up
       </h1>
     </header>
-    <form class="flex my-20 mx-8 flex-col justify-center">
-      <div class="sm:text-center text-left my-2">
-        <label for="bank_name" class="mx-2 sr-only font-bold text-gray-600"
-          >Bank Name:
-        </label>
-        <select
-          v-model="bank_name"
-          class="
-            mx-2
-            bg-white
-            rounded-lg
-            border-solid border-2 border-gray-500
-            py-1
-            px-3
-            sm:w-72
-            w-full
-            focus:outline-none
-          "
-          required
-          name="bank_name"
-          id="bank_name"
+    <form
+      @submit.prevent="createUser"
+      class="flex my-20 flex-col justify-center w-80 mx-auto"
+    >
+      <div class="flex items-center my-2 text-gray-600">
+        <label class="capitalize sr-only font-semibold" for="picture">
+          {{ placeholder }}</label
         >
-          <option value="" selected disabled>Choose Your Bank</option>
-          <option v-for="bank in banks" :key="bank.name" value="bank">
-            {{ bank.name }}
-          </option>
-        </select>
-      </div>
-      <div class="sm:text-center text-left my-2">
-        <label for="account_name" class="mx-2 sr-only font-bold text-gray-600"
-          >Account Name:
-        </label>
-        <input
-          v-model="account_name"
+        <div
           class="
+            flex-grow
+            ml-1
+            rounded-full
+            overflow-hidden
             border-solid border-2 border-gray-500
-            mx-2
-            rounded-lg
-            py-1
-            px-3
-            sm:w-72
-            w-full
-            focus:outline-none
+            relative
           "
-          type="text"
+        >
+          <label
+            class="
+              capitalize
+              font-semibold
+              block
+              h-full
+              cursor-pointer
+              w-full
+              px-3
+              py-0.5
+            "
+            for="picture"
+          >
+            {{ placeholder }}
+            <input
+              class="box-border w-1 h-1 absolute rounded-xl border-0"
+              type="file"
+              accept="image/jpg, image/jpeg"
+              id="picture"
+              name="picture"
+              placeholder="placeholder title"
+              @change="updateImageData"
+            />
+          </label>
+        </div>
+      </div>
+
+      <div class="flex items-center my-2 text-gray-600">
+        <label class="capitalize sr-only font-semibold" for="account_name">
+          Name:</label
+        >
+        <div
+          class="
+            flex-grow
+            ml-1
+            rounded-full
+            overflow-hidden
+            border-solid border-2 border-gray-500
+          "
+        >
+          <input
+            v-model="account_name"
+            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            type="text"
+            required
+            id="account_name"
+            name="account_name"
+            placeholder="Name"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center my-2 text-gray-600">
+        <label class="capitalize sr-only font-semibold" for="email">
+          Email:</label
+        >
+        <div
+          class="
+            flex-grow
+            ml-1
+            rounded-full
+            overflow-hidden
+            border-solid border-2 border-gray-500
+          "
+        >
+          <input
+            v-model="email"
+            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            type="email"
+            required
+            id="email"
+            name="email"
+            placeholder="Input Email"
+          />
+        </div>
+      </div>
+
+      <div
+        class="
+          flex-grow
+          relative
+          ml-1
+          rounded-full
+          overflow-hidden
+          border-solid border-2 border-gray-500
+        "
+      >
+        <input
+          v-model="password"
+          class="box-border w-full py-1 px-3 rounded-xl border-0"
+          type="password"
           required
-          id="account_name"
-          name="account_name"
-          placeholder="Bank Account Name"
+          id="password"
+          name="password"
+          placeholder="Input Password"
+        />
+        <img
+          v-if="display"
+          @click="show"
+          id="image"
+          class="absolute top-1 right-2 cursor-pointer h-50 w-50"
+          src="@/assets/Images/visible.svg"
+          alt="visiblity"
+        />
+        <img
+          v-if="!display"
+          @click="show"
+          id="image"
+          class="absolute top-1 right-2 cursor-pointer z-10 h-50 w-50"
+          src="@/assets/Images/notVisible.svg"
+          alt="visiblity"
         />
       </div>
-      <div class="sm:text-center text-left my-2">
-        <label for="account_number" class="mx-2 sr-only font-bold text-gray-600"
-          >Account Number:
-        </label>
-        <input
-          v-model="account_number"
+
+      <div class="flex items-center my-2 text-gray-600">
+        <label class="capitalize sr-only font-semibold" for="password">
+          Bank Name:</label
+        >
+        <div
           class="
+            flex-grow
+            ml-1
+            rounded-full
+            overflow-hidden
             border-solid border-2 border-gray-500
-            mx-2
-            rounded-lg
-            py-1
-            px-3
-            sm:w-72
-            w-fullz
-            focus:outline-none
           "
-          type="text"
-          required
-          id="account_number"
-          name="account_number"
-          placeholder="Input Bank Account Number"
-        />
+        >
+          <select
+            v-model="bank_name"
+            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            required
+            name="bank_name"
+            id="bank_name"
+          >
+            <option value="" selected disabled>Choose Your Bank</option>
+            <option v-for="bank in banks" :key="bank.name" value="bank">
+              {{ bank.name }}
+            </option>
+          </select>
+        </div>
       </div>
-      <div class="sm:text-center text-left my-2">
-        <label for="email" class="mx-2 sr-only font-bold text-gray-600"
-          >Email:
-        </label>
-        <input
-          v-model="email"
+
+      <div class="flex items-center my-2 text-gray-600">
+        <label class="capitalize sr-only font-semibold" for="account_number">
+          Account Number:</label
+        >
+        <div
           class="
+            flex-grow
+            ml-1
+            rounded-full
+            overflow-hidden
             border-solid border-2 border-gray-500
-            mx-2
-            rounded-lg
-            py-1
-            px-3
-            sm:w-72
-            w-full
-            focus:outline-none
           "
-          type="email"
-          required
-          id="email"
-          name="email"
-          placeholder="Input Bank Email"
-        />
+        >
+          <input
+            v-model="account_number"
+            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            type="text"
+            required
+            id="account_number"
+            name="account_number"
+            placeholder="Input Bank Account Number"
+          />
+        </div>
       </div>
+
       <div class="text-center">
         <button
           type="submit"
@@ -129,20 +217,41 @@
         </button>
       </div>
     </form>
+    <Modal
+      @close="toggle"
+      :modalText="modalText"
+      :modal="modalToggle"
+      :signup="signup"
+    />
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, watch, ref } from "vue";
+import { useStore } from "vuex";
+
+import Modal from "@/components/Modal.vue";
 
 export default {
+  components: {
+    Modal,
+  },
   setup() {
-    const state = reactive({
+    const store = useStore();
+    const signup = ref(false);
+    const data = reactive({
+      display: false,
+      modalToggle: false,
+      modalText: "Signing Up... Please Wait",
       email: "",
+      placeholder: "Upload Profile Picture",
       account_number: "",
       account_name: "",
       bank_name: "",
+      password: "",
+      profilePicture: "",
     });
+
     const banks = [
       { id: "1", name: "Access Bank", code: "044" },
       { id: "2", name: "Citibank", code: "023" },
@@ -169,12 +278,68 @@ export default {
       { id: "23", name: "Zenith Bank", code: "057" },
     ];
 
+    watch(signup, () => {
+      if (signup.value == true) {
+        data.modalText = "Signing Up... Please Wait";
+        window.disabled = true;
+      } else {
+        data.modalText = "Sign up Successful";
+      }
+    });
+
+    const show = () => {
+      data.display = !data.display;
+      if (data.display) {
+        document.getElementById("password").type = "text";
+      }
+      if (!data.display) {
+        document.getElementById("password").type = "password";
+      }
+    };
+
+    const updateImageData = (e) => {
+      data.profilePicture = e.target.files[0];
+      data.placeholder = e.target.files[0].name;
+    };
+    const createUser = async () => {
+      try {
+        signup.value = true;
+        toggle();
+        await store.dispatch("Firebase/createUser", {
+          email: data.email,
+          password: data.password,
+          profilePicture: data.profilePicture,
+          name: data.account_name,
+          account: data.account_number,
+          bank: data.bank_name,
+        });
+        signup.value = false;
+      } catch (err) {
+        data.modalText = err.message;
+      }
+    };
+    const toggle = () => {
+      data.modalToggle = !data.modalToggle;
+    };
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (signup.value) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      },
+      true
+    );
     return {
-      ...toRefs(state),
+      ...toRefs(data),
       banks,
+      createUser,
+      updateImageData,
+      toggle,
+      signup,
+      show,
     };
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

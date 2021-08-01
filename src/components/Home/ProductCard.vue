@@ -25,7 +25,7 @@
         bg-gray-600
       "
     >
-      <img class="w-full h-full object-fill" :src="itemImage" alt="shoe" />
+      <img class="w-full h-full object-cover" :src="itemImage" alt="shoe" />
     </div>
     <div
       class="

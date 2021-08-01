@@ -117,7 +117,6 @@
             px-2
             py-1
             font-extrabold
-            bg-gray-300
             text-gray-600
             hover:bg-gray-400 hover:text-red-900 hover:border-gray-400
           "
@@ -171,7 +170,6 @@ export default {
         (val) => val.id == element.id
       );
       store.dispatch("firstModule/removed", { product: remove });
-      console.log(data.totalAmount);
     };
 
     const checkout = () => router.push("/checkout");

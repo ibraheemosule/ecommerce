@@ -25,7 +25,7 @@ export default {
     },
   },
   actions: {
-    async fetchApi({ state, commit }) {
+    async fetchApi({ commit }) {
       try {
         const allShirts = await axios
           .get("https://api.pexels.com/v1/search?query=shirt", {
@@ -88,7 +88,6 @@ export default {
         commit("setAllShirts", allShirts);
         commit("setAllShoes", allShoes);
         commit("setAllCaps", allCaps);
-        console.log(state.allPants);
       } catch (err) {
         console.log(err);
       }

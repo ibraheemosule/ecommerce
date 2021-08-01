@@ -6,24 +6,11 @@
     </h2>
     <div class="shirt-trousers flex justify-around flex-wrap">
       <ProductCard
-        item="Shirt"
-        :description="description[0]"
-        :itemImage="shirtImage"
-      />
-      <ProductCard
-        item="Pant"
-        :description="description[2]"
-        :itemImage="pantImage"
-      />
-      <ProductCard
-        item="Shoe"
-        :description="description[1]"
-        :itemImage="shoeImage"
-      />
-      <ProductCard
-        item="Cap"
-        :description="description[3]"
-        :itemImage="capImage"
+        v-for="product in products"
+        :key="product.item"
+        :item="product.item"
+        :description="product.description"
+        :itemImage="product.image"
       />
     </div>
   </div>
@@ -41,16 +28,31 @@ export default {
   setup() {
     const store = useStore();
     const data = reactive({
-      shirtImage: computed(() => store.state.firstModule.allShirts[2]),
-      pantImage: computed(() => store.state.firstModule.allPants[3]),
-      shoeImage: computed(() => store.state.firstModule.allShoes[1]),
-      capImage: computed(() => store.state.firstModule.allCaps[4]),
-      description: [
-        "We have the best shirts for various occasions ranging from casuals to corporate styles",
-        "Our range of shoe collections makes it easy for you to pick a befitting footwear to compliment your dress style",
-        "We offer the best and affordable pants to compliment yourshirt selection",
-        "Our unisex caps are perfect for any casual outfits",
-      ],
+      products: computed(() => [
+        {
+          item: "Shirts",
+          image: store.state.firstModule.allShirts[2],
+          description:
+            "We have the best shirts for various occasions ranging from casuals to corporate styles",
+        },
+        {
+          item: "Pants",
+          image: store.state.firstModule.allPants[3],
+          description:
+            "We offer the best and affordable pants to compliment yourshirt selection",
+        },
+        {
+          item: "Shoes",
+          image: store.state.firstModule.allShoes[1],
+          description:
+            "Our range of shoe collections makes it easy for you to pick a befitting footwear to compliment your dress style",
+        },
+        {
+          item: "Caps",
+          image: store.state.firstModule.allCaps[4],
+          description: "Our unisex caps are perfect for any casual outfits",
+        },
+      ]),
     });
 
     return {
