@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import createStore from "../store/index";
 
 const routes = [
   {
@@ -22,16 +23,25 @@ const routes = [
     path: "/products",
     name: "Our Products",
     component: () => import("../views/Products.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/cart",
     name: "Cart",
     component: () => import("../views/Cart.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/checkout",
     name: "Checkout",
     component: () => import("../views/Checkout.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/signup",
@@ -47,12 +57,25 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: () => import("../views/Profile.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  console.log(createStore.state.Firebase.signin);
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  if (!createStore.state.Firebase.signin && requiresAuth) {
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;

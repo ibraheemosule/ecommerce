@@ -57,12 +57,16 @@ export default {
         console.log(profilePicture, name, account, bank);
       }
     },
-    signout({ commit }) {
-      firebase.auth().signOut();
-      commit("setSignin", false);
-      commit("setUser", "");
-      commit("setImage", "");
-      console.log("signout");
+    async signout({ commit }) {
+      try {
+        await firebase.auth().signOut();
+        commit("setSignin", false);
+        commit("setUser", "");
+        commit("setImage", "");
+        console.log("signout");
+      } catch (err) {
+        console.log(err.message);
+      }
     },
     // eslint-disable-next-line
     async signin({ state, commit }, { userEmail, userPassword }) {
