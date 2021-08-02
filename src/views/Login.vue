@@ -179,4 +179,7 @@ export default {
 img {
   display: inline;
 }
+input:focus-visible {
+  outline: none;
+}
 </style>

@@ -279,7 +279,7 @@
 
 <script>
 import { reactive, toRefs, watch, ref } from "vue";
-// import { useStore } from "vuex";
+import { useStore } from "vuex";
 
 import Modal from "@/components/Modal.vue";
 
@@ -288,7 +288,7 @@ export default {
     Modal,
   },
   setup() {
-    // const store = useStore();
+    const store = useStore();
     const signup = ref(false);
     const data = reactive({
       display: false,
@@ -355,25 +355,23 @@ export default {
       data.placeholder = e.target.files[0].name;
     };
     const createUser = async () => {
-      console.log(data.bank_name);
-      return;
-      // try {
-      //   signup.value = true;
-      //   toggle();
-      //   await store.dispatch("Firebase/createUser", {
-      //     email: data.email,
-      //     password: data.password,
-      //     profilePicture: data.profilePicture,
-      //     name: data.account_name,
-      //     account: data.account_number,
-      //     bank: data.bank_name,
-      //     address: data.address,
-      //     phone: data.phone,
-      //   });
-      //   signup.value = false;
-      // } catch (err) {
-      //   data.modalText = err.message;
-      // }
+      try {
+        signup.value = true;
+        toggle();
+        await store.dispatch("Firebase/createUser", {
+          email: data.email,
+          password: data.password,
+          profilePicture: data.profilePicture,
+          name: data.account_name,
+          account: data.account_number,
+          bank: data.bank_name,
+          address: data.address,
+          phone: data.phone,
+        });
+        signup.value = false;
+      } catch (err) {
+        data.modalText = err.message;
+      }
     };
     const toggle = () => {
       data.modalToggle = !data.modalToggle;
@@ -400,3 +398,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+select {
+  cursor: pointer;
+}
+</style>

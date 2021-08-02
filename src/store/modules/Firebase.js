@@ -93,7 +93,7 @@ export default {
       }
     },
 
-    async getImage({ commit }, { userInfo }) {
+    async getImage({ commit, dispatch }, { userInfo }) {
       if (userInfo) {
         try {
           const imageUrl = await firebase
@@ -101,6 +101,7 @@ export default {
             .ref(`users/${userInfo}/profile.jpg`)
             .getDownloadURL();
           await commit("setImage", imageUrl);
+          dispatch("fetchInfo", { userId: userInfo });
         } catch (err) {
           console.log(err.message);
         }
