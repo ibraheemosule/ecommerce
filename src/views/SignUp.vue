@@ -139,7 +139,7 @@
           v-if="!display"
           @click="show"
           id="image"
-          class="absolute top-1 right-2 cursor-pointer z-10 h-50 w-50"
+          class="absolute top-1 right-2 cursor-pointer h-50 w-50"
           src="@/assets/Images/notVisible.svg"
           alt="visiblity"
         />
@@ -166,7 +166,7 @@
             id="bank_name"
           >
             <option value="" selected disabled>Choose Your Bank</option>
-            <option v-for="bank in banks" :key="bank.name" value="bank">
+            <option v-for="bank in banks" :key="bank.name" :value="bank.name">
               {{ bank.name }}
             </option>
           </select>
@@ -194,6 +194,57 @@
             id="account_number"
             name="account_number"
             placeholder="Input Bank Account Number"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center my-2 text-gray-600">
+        <label class="capitalize sr-only font-semibold" for="phone">
+          Phone Number:</label
+        >
+        <div
+          class="
+            flex-grow
+            ml-1
+            rounded-full
+            overflow-hidden
+            border-solid border-2 border-gray-500
+          "
+        >
+          <input
+            v-model="phone"
+            pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
+            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            type="tel"
+            required
+            id="phone"
+            name="phone"
+            placeholder="Phone No (1234-457-678)"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center my-2 text-gray-600">
+        <label class="capitalize sr-only font-semibold" for="address">
+          Address:</label
+        >
+        <div
+          class="
+            flex-grow
+            ml-1
+            rounded-full
+            overflow-hidden
+            border-solid border-2 border-gray-500
+          "
+        >
+          <textarea
+            v-model="address"
+            class="box-border w-full h-full m-0 py-1 px-3 rounded-xl border-0"
+            type="text"
+            required
+            id="address"
+            name="address"
+            placeholder="Input Your Home Address"
           />
         </div>
       </div>
@@ -228,7 +279,7 @@
 
 <script>
 import { reactive, toRefs, watch, ref } from "vue";
-import { useStore } from "vuex";
+// import { useStore } from "vuex";
 
 import Modal from "@/components/Modal.vue";
 
@@ -237,19 +288,21 @@ export default {
     Modal,
   },
   setup() {
-    const store = useStore();
+    // const store = useStore();
     const signup = ref(false);
     const data = reactive({
       display: false,
       modalToggle: false,
       modalText: "Signing Up... Please Wait",
       email: "",
+      address: "",
       placeholder: "Upload Profile Picture",
       account_number: "",
       account_name: "",
       bank_name: "",
       password: "",
       profilePicture: "",
+      phone: "",
     });
 
     const banks = [
@@ -302,21 +355,25 @@ export default {
       data.placeholder = e.target.files[0].name;
     };
     const createUser = async () => {
-      try {
-        signup.value = true;
-        toggle();
-        await store.dispatch("Firebase/createUser", {
-          email: data.email,
-          password: data.password,
-          profilePicture: data.profilePicture,
-          name: data.account_name,
-          account: data.account_number,
-          bank: data.bank_name,
-        });
-        signup.value = false;
-      } catch (err) {
-        data.modalText = err.message;
-      }
+      console.log(data.bank_name);
+      return;
+      // try {
+      //   signup.value = true;
+      //   toggle();
+      //   await store.dispatch("Firebase/createUser", {
+      //     email: data.email,
+      //     password: data.password,
+      //     profilePicture: data.profilePicture,
+      //     name: data.account_name,
+      //     account: data.account_number,
+      //     bank: data.bank_name,
+      //     address: data.address,
+      //     phone: data.phone,
+      //   });
+      //   signup.value = false;
+      // } catch (err) {
+      //   data.modalText = err.message;
+      // }
     };
     const toggle = () => {
       data.modalToggle = !data.modalToggle;

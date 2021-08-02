@@ -97,32 +97,6 @@
             placeholder="Input Email"
           />
         </div>
-        <div class="flex my-2">
-          <label for="password" class="mx-2 font-bold text-gray-600"
-            >Password:
-          </label>
-          <input
-            v-model="password"
-            disabled
-            class="
-              -mt-1
-              border-gray-500
-              mx-2
-              rounded-lg
-              py-1
-              px-3
-              sm:w-72
-              w-full
-              focus:outline-none
-              flex-grow
-            "
-            type="password"
-            required
-            id="password"
-            name="password"
-            placeholder="Input Password"
-          />
-        </div>
         <div class="my-2 flex">
           <label for="bank_name" class="mx-2 font-bold text-gray-600"
             >Bank Name:
@@ -147,6 +121,33 @@
             id="bank_name"
             name="bank_name"
             placeholder="Bank Name"
+          />
+        </div>
+
+        <div class="my-2 flex">
+          <label for="phone" class="mx-2 font-bold text-gray-600"
+            >Telephone Number:
+          </label>
+          <input
+            v-model="phone"
+            disabled
+            class="
+              -mt-1
+              flex-grow
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+            "
+            type="tel"
+            required
+            id="phone"
+            name="phone"
+            placeholder="Phone Number"
           />
         </div>
         <div class="my-2 flex">
@@ -175,49 +176,45 @@
             placeholder="Input Bank Account Number"
           />
         </div>
-
-        <div class="text-center">
-          <button
-            type="submit"
+        <div class="my-2 flex">
+          <label for="address" class="mx-2 font-bold text-gray-600"
+            >Address:
+          </label>
+          <textarea
+            v-model="address"
+            disabled
             class="
-              mt-5
-              border-2 border-solid border-green-400
-              bg-green-400
-              rounded
-              px-2
+              -mt-1
+              flex-grow
+              border-gray-500
+              mx-2
+              rounded-lg
               py-1
-              font-bold
-              text-gray-600
-              hover:bg-gray-400 hover:text-red-900 hover:border-gray-400
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
             "
-          >
-            Edit Profile
-          </button>
+            type="text"
+            required
+            id="address"
+            name="address"
+            placeholder="Address"
+          />
         </div>
       </div>
     </form>
-    <Modal
-      @close="toggle"
-      :modalText="modalText"
-      :modal="modalToggle"
-      :signup="signup"
-    />
   </div>
 </template>
 
 <script>
-import { reactive, toRefs, watch, ref, computed } from "vue";
+import { reactive, toRefs, computed } from "vue";
 import { useStore } from "vuex";
 
-import Modal from "@/components/Modal.vue";
-
 export default {
-  components: {
-    Modal,
-  },
   setup() {
     const store = useStore();
-    const signup = ref(false);
+
     const data = reactive({
       modalToggle: false,
       modalText: "Signing Up... Please Wait",
@@ -228,65 +225,12 @@ export default {
       account_name: computed(() => store.getters["Firebase/name"]),
       bank_name: computed(() => store.getters["Firebase/bank"]),
       password: "",
+      address: computed(() => store.getters["Firebase/address"]),
+      phone: computed(() => store.getters["Firebase/phone"]),
     });
 
-    watch(signup, () => {
-      if (signup.value == true) {
-        data.modalText = "Signing Up... Please Wait";
-        window.disabled = true;
-      } else {
-        data.modalText = "Sign up Successful";
-      }
-    });
-
-    (function () {
-      const inputs = document.getElementsByTagName("input");
-      inputs.forEach((input) => {
-        input.style.backgroundColor = "transparent";
-      });
-    })();
-
-    const updateImageData = (e) => {
-      data.profilePicture = e.target.files[0];
-      data.placeholder = e.target.files[0].name;
-    };
-    const createUser = async () => {
-      try {
-        signup.value = true;
-
-        toggle();
-        await store.dispatch("Firebase/createUser", {
-          email: data.email,
-          password: data.password,
-          profilePicture: data.profilePicture,
-          name: data.account_name,
-          account: data.account_number,
-          bank: data.bank_name,
-        });
-        signup.value = false;
-      } catch (err) {
-        data.modalText = err.message;
-      }
-    };
-    const toggle = () => {
-      data.modalToggle = !data.modalToggle;
-    };
-    document.addEventListener(
-      "click",
-      (e) => {
-        if (signup.value) {
-          e.stopPropagation();
-          e.preventDefault();
-        }
-      },
-      true
-    );
     return {
       ...toRefs(data),
-      createUser,
-      updateImageData,
-      toggle,
-      signup,
     };
   },
 };

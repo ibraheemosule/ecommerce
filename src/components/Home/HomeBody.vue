@@ -6,7 +6,7 @@
     <article class="hot-deals sm:mx-16 mb-32 flex bg-gray-200">
       <div class="w-1/2 h-full bg-gray-600">
         <img
-          class="w-full h-full object-fill opacity-60"
+          class="w-full h-full object-cover opacity-60"
           :src="image"
           alt="another image"
         />

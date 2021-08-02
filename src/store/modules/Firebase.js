@@ -12,6 +12,8 @@ export default {
       name: "",
       bank: "",
       bank_account: "",
+      phone: "",
+      address: "",
     };
   },
 
@@ -25,13 +27,15 @@ export default {
     name: (state) => state.name,
     bank: (state) => state.bank,
     bank_account: (state) => state.bank_account,
+    phone: (state) => state.phone,
+    address: (state) => state.address,
   },
 
   //ACTIONS
   actions: {
     async createUser(
       { dispatch },
-      { email, password, profilePicture, name, account, bank }
+      { email, password, profilePicture, name, account, bank, phone, address }
     ) {
       try {
         const cred = await firebase
@@ -46,12 +50,9 @@ export default {
           name,
           account,
           bank,
+          phone,
+          address,
         });
-
-        // await firebase
-        //   .storage()
-        //   .ref("users/" + cred.user.uid + "/profile.jpg")
-        //   .put(profilePicture);
       } catch (err) {
         console.log(err.message);
       }
@@ -116,6 +117,8 @@ export default {
           commit("setName", info.name);
           commit("setBank", info.bank);
           commit("setBankAccount", info.account);
+          commit("setPhone", info.phone);
+          commit("setAddress", info.address);
         });
     },
   },
@@ -128,5 +131,7 @@ export default {
     setName: (state, val) => (state.name = val),
     setBank: (state, val) => (state.bank = val),
     setBankAccount: (state, val) => (state.bank_account = val),
+    setPhone: (state, val) => (state.phone = val),
+    setAddress: (state, val) => (state.address = val),
   },
 };

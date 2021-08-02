@@ -1,5 +1,5 @@
 <template>
-  <div class="checkout">
+  <div class="profile">
     <header class="flex justify-center bg-blue-200 sm:p-20 p-12 font-bold">
       <h1
         class="
@@ -13,166 +13,294 @@
         Checkout
       </h1>
     </header>
-    <form class="flex my-20 mx-8 flex-col justify-center">
-      <div class="sm:text-center text-left my-2">
-        <label for="bank_name" class="mx-2 sr-only font-bold text-gray-600"
-          >Bank Name:
-        </label>
-        <select
-          v-model="bank_name"
-          class="
-            mx-2
-            bg-white
-            rounded-lg
-            border-solid border-2 border-gray-500
-            py-1
-            px-3
-            sm:w-72
-            w-full
-            focus:outline-none
-          "
-          required
-          name="bank_name"
-          id="bank_name"
-        >
-          <option value="" selected disabled>Choose Your Bank</option>
-          <option v-for="bank in banks" :key="bank.name" value="bank">
-            {{ bank.name }}
-          </option>
-        </select>
-      </div>
-      <div class="sm:text-center text-left my-2">
-        <label for="account_name" class="mx-2 sr-only font-bold text-gray-600"
-          >Account Name:
-        </label>
-        <input
-          v-model="account_name"
-          class="
-            border-solid border-2 border-gray-500
-            mx-2
-            rounded-lg
-            py-1
-            px-3
-            sm:w-72
-            w-full
-            focus:outline-none
-          "
-          type="text"
-          required
-          id="account_name"
-          name="account_name"
-          placeholder="Bank Account Name"
-        />
-      </div>
-      <div class="sm:text-center text-left my-2">
-        <label for="account_number" class="mx-2 sr-only font-bold text-gray-600"
-          >Account Number:
-        </label>
-        <input
-          v-model="account_number"
-          class="
-            border-solid border-2 border-gray-500
-            mx-2
-            rounded-lg
-            py-1
-            px-3
-            sm:w-72
-            w-full
-            focus:outline-none
-          "
-          type="text"
-          required
-          id="account_number"
-          name="account_number"
-          placeholder="Input Bank Account Number"
-        />
-      </div>
-      <div class="sm:text-center text-left my-2">
-        <label for="email" class="mx-2 sr-only font-bold text-gray-600"
-          >Email:
-        </label>
-        <input
-          v-model="email"
-          class="
-            border-solid border-2 border-gray-500
-            mx-2
-            rounded-lg
-            py-1
-            px-3
-            sm:w-72
-            w-full
-            focus:outline-none
-          "
-          type="email"
-          required
-          id="email"
-          name="email"
-          placeholder="Input Bank Email"
-        />
-      </div>
-      <div class="text-center">
-        <button
-          type="submit"
-          class="
-            mt-5
-            border-2 border-solid border-green-400
-            bg-green-400
-            rounded
-            px-2
-            py-1
-            font-bold
-            bg-gray-300
-            text-gray-600
-            hover:bg-gray-400 hover:text-red-900 hover:border-gray-400
-          "
-        >
-          PROCEED TO PAY &#x20A6;5000
-        </button>
+    <form
+      @submit.prevent="createUser"
+      class="flex my-20 mx-8 flex-col items-center"
+    >
+      <div>
+        <!-- NAME -->
+        <div class="flex text-left my-2">
+          <label for="account_name" class="mx-2 font-bold text-gray-600"
+            >Name:
+          </label>
+          <input
+            v-model="account_name"
+            disabled
+            class="
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+              flex-grow
+              -mt-1
+            "
+            type="text"
+            required
+            id="account_name"
+            name="account_name"
+            placeholder="Name"
+          />
+        </div>
+
+        <!-- EMAIL -->
+        <div class="flex my-2">
+          <label for="email" class="mx-2 font-bold text-gray-600"
+            >Email:
+          </label>
+          <input
+            v-model="email"
+            disabled
+            class="
+              -mt-1
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+              flex-grow
+            "
+            type="email"
+            required
+            id="email"
+            name="email"
+            placeholder="Input Email"
+          />
+        </div>
+
+        <!-- PHONE -->
+        <div class="flex my-2">
+          <label for="tel" class="mx-2 font-bold text-gray-600"
+            >Phone Number:
+          </label>
+          <input
+            v-model="phone"
+            disabled
+            class="
+              -mt-1
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+              flex-grow
+            "
+            type="tel"
+            required
+            id="tel"
+            name="tel"
+            placeholder="telephone"
+          />
+        </div>
+
+        <!-- BANK NAME -->
+        <div class="my-2 flex">
+          <label for="bank_name" class="mx-2 font-bold text-gray-600"
+            >Bank Name:
+          </label>
+          <input
+            v-model="bank"
+            disabled
+            class="
+              -mt-1
+              flex-grow
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+            "
+            type="text"
+            required
+            id="bank_name"
+            name="bank_name"
+            placeholder="Bank Name"
+          />
+        </div>
+
+        <!-- ACCOUNT NUMBER -->
+        <div class="my-2 flex">
+          <label for="account_number" class="mx-2 font-bold text-gray-600"
+            >Account Number:
+          </label>
+          <input
+            v-model="account_number"
+            disabled
+            class="
+              -mt-1
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+              flex-grow
+            "
+            type="text"
+            required
+            id="account_number"
+            name="account_number"
+            placeholder="Input Bank Account Number"
+          />
+        </div>
+        <!-- SELECTED PRODUCTS-->
+        <div class="my-2 flex">
+          <label class="mx-2 font-bold text-gray-600">Number Of Items: </label>
+          <input
+            v-model="selectedProducts"
+            disabled
+            class="
+              -mt-1
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+              flex-grow
+            "
+            type="text"
+            required
+          />
+        </div>
+
+        <!-- ADDRESS -->
+        <div class="flex my-2">
+          <label for="address" class="mx-2 font-bold text-gray-600"
+            >Home Address:
+          </label>
+          <div
+            class="
+              -mt-1
+              break-words
+              bg-gray-100
+              border-gray-500
+              mx-2
+              rounded-lg
+              py-1
+              px-3
+              sm:w-72
+              w-full
+              focus:outline-none
+              flex-grow
+            "
+          >
+            {{ address }}
+          </div>
+        </div>
+        <div class="text-center">
+          <button
+            type="submit"
+            class="
+              mt-5
+              border-2 border-solid border-green-400
+              bg-green-400
+              rounded
+              px-2
+              py-1
+              font-bold
+              text-gray-600
+              hover:bg-gray-400 hover:text-red-900 hover:border-gray-400
+            "
+          >
+            PROCEED TO PAY &#x20A6;5000
+          </button>
+        </div>
       </div>
     </form>
+    <Modal
+      @close="toggle"
+      :modalText="modalText"
+      :modal="modalToggle"
+      :signup="signup"
+    />
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, watch, ref, computed } from "vue";
+import { useStore } from "vuex";
+
+import Modal from "@/components/Modal.vue";
 
 export default {
+  components: {
+    Modal,
+  },
   setup() {
-    const state = reactive({
-      email: "",
-      account_number: "",
-      account_name: "",
-      bank_name: "",
+    const store = useStore();
+    const signup = ref(false);
+    const data = reactive({
+      modalToggle: false,
+      selectedProducts: computed(
+        () => store.state.firstModule.selectedProducts.length
+      ),
+      modalText: "Signing Up... Please Wait",
+      image: computed(() => store.getters["Firebase/image"]),
+      email: computed(() => store.getters["Firebase/email"]),
+      placeholder: "Upload Profile Picture",
+      account_number: computed(() => store.getters["Firebase/bank_account"]),
+      account_name: computed(() => store.getters["Firebase/name"]),
+      bank: computed(() => store.getters["Firebase/bank"]),
+      phone: computed(() => store.getters["Firebase/phone"]),
+      address: computed(() => store.getters["Firebase/address"]),
     });
-    const banks = [
-      { id: "1", name: "Access Bank", code: "044" },
-      { id: "2", name: "Citibank", code: "023" },
-      { id: "3", name: "Diamond Bank", code: "063" },
-      { id: "4", name: "Dynamic Standard Bank", code: "" },
-      { id: "5", name: "Ecobank Nigeria", code: "050" },
-      { id: "6", name: "Fidelity Bank Nigeria", code: "070" },
-      { id: "7", name: "First Bank of Nigeria", code: "011" },
-      { id: "8", name: "First City Monument Bank", code: "214" },
-      { id: "9", name: "Guaranty Trust Bank", code: "058" },
-      { id: "10", name: "Heritage Bank Plc", code: "030" },
-      { id: "11", name: "Jaiz Bank", code: "301" },
-      { id: "12", name: "Keystone Bank Limited", code: "082" },
-      { id: "13", name: "Providus Bank Plc", code: "101" },
-      { id: "14", name: "Polaris Bank", code: "076" },
-      { id: "15", name: "Stanbic IBTC Bank Nigeria Limited", code: "221" },
-      { id: "16", name: "Standard Chartered Bank", code: "068" },
-      { id: "17", name: "Sterling Bank", code: "232" },
-      { id: "18", name: "Suntrust Bank Nigeria Limited", code: "100" },
-      { id: "19", name: "Union Bank of Nigeria", code: "032" },
-      { id: "20", name: "United Bank for Africa", code: "033" },
-      { id: "21", name: "Unity Bank Plc", code: "215" },
-      { id: "22", name: "Wema Bank", code: "035" },
-      { id: "23", name: "Zenith Bank", code: "057" },
-    ];
 
+    watch(signup, () => {
+      if (signup.value == true) {
+        data.modalText = "Payment Integration Coming Soon";
+        window.disabled = true;
+      } else {
+        data.modalText = "Payment Integration Coming Soon";
+      }
+    });
+
+    const updateImageData = (e) => {
+      data.profilePicture = e.target.files[0];
+      data.placeholder = e.target.files[0].name;
+    };
+    const createUser = async () => {
+      signup.value = true;
+      toggle();
+      setTimeout(() => {
+        signup.value = false;
+      }, 3000);
+    };
+    const toggle = () => {
+      data.modalToggle = !data.modalToggle;
+    };
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (signup.value) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      },
+      true
+    );
     return {
-      ...toRefs(state),
-      banks,
+      ...toRefs(data),
+      createUser,
+      updateImageData,
+      toggle,
+      signup,
     };
   },
 };

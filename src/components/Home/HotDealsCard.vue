@@ -18,7 +18,7 @@
   >
     <img
       :src="image"
-      class="image absolute top-0 left-0 h-full w-full opacity-20"
+      class="image object-cover absolute top-0 left-0 h-full w-full opacity-20"
       alt="hot deals"
     />
     <div

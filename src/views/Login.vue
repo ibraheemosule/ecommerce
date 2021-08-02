@@ -77,7 +77,7 @@
             v-if="!display"
             @click="show"
             id="image"
-            class="absolute top-1 right-2 cursor-pointer z-10 h-50 w-50"
+            class="absolute top-1 right-2 cursor-pointer h-50 w-50"
             src="@/assets/Images/notVisible.svg"
             alt="visiblity"
           />
@@ -134,7 +134,7 @@ export default {
 
     watch(signup, () => {
       if (signup.value == true) {
-        data.modalText = "Signing Up... Please Wait";
+        data.modalText = "Signing In... Please Wait";
         window.disabled = true;
       } else {
         data.modalText = "Done";
