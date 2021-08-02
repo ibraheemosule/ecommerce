@@ -2,7 +2,10 @@
   <div>
     <the-navigation />
   </div>
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in"
+      ><component :is="Component" /> </transition
+  ></router-view>
   <Footer />
 </template>
 
@@ -31,13 +34,12 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         data.user = user;
-        console.log(user);
+
         store.commit("Firebase/setSignin", true);
         store.commit("Firebase/setEmail", user.email);
         store.commit("Firebase/setUser", data.user);
         store.dispatch("Firebase/getImage", { userInfo: data.user.uid });
         store.dispatch("Firebase/fetchInfo", { userId: data.user.uid });
-        console.log(store.state.Firebase.email, "working");
       }
     });
 
@@ -52,5 +54,13 @@ export default {
 body {
   font-family: "Lato", sans-serif !important;
   letter-spacing: 0.1em;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
 }
 </style>

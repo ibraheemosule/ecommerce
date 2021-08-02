@@ -137,7 +137,7 @@ export default {
         data.modalText = "Signing Up... Please Wait";
         window.disabled = true;
       } else {
-        data.modalText = "Sign In Successful";
+        data.modalText = "Done";
       }
     });
     const toggle = () => {

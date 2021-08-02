@@ -23,6 +23,7 @@
         name="newsletter"
         placeholder="Subscribe To Our Emailing List"
         @focus="verify = false"
+        id="newsLetter"
       />
       <button
         class="
@@ -69,7 +70,7 @@ export default {
       }),
     });
     const submit = () => {
-      console.log(data.email);
+      data.email = "";
     };
 
     return {

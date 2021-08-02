@@ -100,7 +100,7 @@ export default {
       if (!checkProduct) {
         commit("setSelectedProducts", [...selectedProducts, ...product]);
       }
-      console.log(state.selectedProducts);
+
       return;
     },
     removed({ state, commit }, { product }) {
@@ -108,7 +108,6 @@ export default {
         (val) => val.id !== product[0].id
       );
       commit("setSelectedProducts", [...remove]);
-      console.log(state.selectedProducts);
     },
   },
   mutations: {

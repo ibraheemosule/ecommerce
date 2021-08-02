@@ -41,7 +41,7 @@ export default {
           userId: cred.user.uid,
           picture: profilePicture,
         });
-        console.log(cred.user, "lol");
+
         await firebase.firestore().collection("users").doc(cred.user.uid).set({
           name,
           account,
@@ -54,7 +54,6 @@ export default {
         //   .put(profilePicture);
       } catch (err) {
         console.log(err.message);
-        console.log(profilePicture, name, account, bank);
       }
     },
     async signout({ commit }) {
@@ -63,38 +62,33 @@ export default {
         commit("setSignin", false);
         commit("setUser", "");
         commit("setImage", "");
-        console.log("signout");
       } catch (err) {
         console.log(err.message);
       }
     },
     // eslint-disable-next-line
     async signin({ state, commit }, { userEmail, userPassword }) {
-      console.log(userEmail, userPassword);
       try {
-        console.log(userEmail, userPassword);
-        const res = await firebase
+        await firebase
           .auth()
           .signInWithEmailAndPassword(userEmail, userPassword);
-        console.log(userEmail, userPassword, res);
+
         commit("setError", "");
       } catch (err) {
         console.log(err);
         commit("setError", "Incorrect Email/Password");
-        console.log(state.error);
       }
     },
 
     async storeImage({ dispatch }, { userId, picture }) {
       try {
-        const image = await firebase
+        await firebase
           .storage()
           .ref("users/" + userId + "/profile.jpg")
           .put(picture);
         await dispatch("getImage", { userInfo: userId });
-        console.log(image);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     },
 
@@ -111,7 +105,7 @@ export default {
         }
       }
     },
-    async fetchInfo({ state, commit }, { userId }) {
+    async fetchInfo({ commit }, { userId }) {
       await firebase
         .firestore()
         .collection("users")
@@ -122,8 +116,6 @@ export default {
           commit("setName", info.name);
           commit("setBank", info.bank);
           commit("setBankAccount", info.account);
-
-          console.log(state.name, state.bank, state.bank_account);
         });
     },
   },

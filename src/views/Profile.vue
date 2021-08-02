@@ -253,7 +253,7 @@ export default {
     const createUser = async () => {
       try {
         signup.value = true;
-        console.log(signup.value);
+
         toggle();
         await store.dispatch("Firebase/createUser", {
           email: data.email,
@@ -264,7 +264,6 @@ export default {
           bank: data.bank_name,
         });
         signup.value = false;
-        await console.log("success");
       } catch (err) {
         data.modalText = err.message;
       }

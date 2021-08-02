@@ -69,7 +69,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(createStore.state.Firebase.signin);
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   if (!createStore.state.Firebase.signin && requiresAuth) {
     next("/login");
