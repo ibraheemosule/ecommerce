@@ -33,7 +33,7 @@
         >
           <input
             v-model="email"
-            class="box-border w-full py-1 px-3 border-0"
+            class="box-border w-full py-1.5 px-3 border-0"
             type="email"
             required
             id="email"
@@ -58,7 +58,7 @@
         >
           <input
             v-model="password"
-            class="box-border w-full py-1 px-3 border-0"
+            class="box-border w-full py-1.5 px-3 border-0"
             type="password"
             required
             id="password"

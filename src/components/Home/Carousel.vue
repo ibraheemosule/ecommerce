@@ -177,6 +177,12 @@ export default {
 
         responsive: [
           {
+            breakpoint: 500,
+            settings: {
+              autoplay: false,
+            },
+          },
+          {
             breakpoint: 600,
             settings: {
               dots: false,

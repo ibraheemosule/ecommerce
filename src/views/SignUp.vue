@@ -40,7 +40,7 @@
               cursor-pointer
               w-full
               px-3
-              py-0.5
+              py-1.5
             "
             for="picture"
           >
@@ -73,7 +73,7 @@
         >
           <input
             v-model="account_name"
-            class="box-border w-full py-1 px-3 border-0"
+            class="box-border w-full py-1.5 px-3 border-0"
             type="text"
             required
             id="account_name"
@@ -98,7 +98,7 @@
         >
           <input
             v-model="email"
-            class="box-border w-full py-1 px-3 border-0"
+            class="box-border w-full py-1.5 px-3 border-0"
             type="email"
             required
             id="email"
@@ -121,7 +121,7 @@
       >
         <input
           v-model="password"
-          class="box-border w-full py-1 px-3 border-0"
+          class="box-border w-full py-1.5 px-3 border-0"
           type="password"
           required
           id="password"
@@ -161,7 +161,7 @@
         >
           <select
             v-model="bank_name"
-            class="box-border w-full py-1 px-3 border-0"
+            class="box-border w-full py-1.5 px-3 border-0"
             required
             name="bank_name"
             id="bank_name"
@@ -189,7 +189,7 @@
         >
           <input
             v-model="account_number"
-            class="box-border w-full py-1 px-3 border-0"
+            class="box-border w-full py-1.5 px-3 border-0"
             type="text"
             required
             id="account_number"
@@ -215,12 +215,12 @@
           <input
             v-model="phone"
             pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
-            class="box-border w-full py-1 px-3 border-0"
+            class="box-border w-full py-1.5 px-3 border-0"
             type="tel"
             required
             id="phone"
             name="phone"
-            placeholder="Phone No (1234-457-678)"
+            placeholder="Phone No (XXXX-XXX-XXXX)"
           />
         </div>
       </div>
@@ -240,7 +240,7 @@
         >
           <textarea
             v-model="address"
-            class="box-border w-full h-full m-0 py-1 px-3 border-0"
+            class="box-border w-full h-full m-0 py-1.5 px-3 border-0"
             type="text"
             required
             id="address"
@@ -259,7 +259,7 @@
             bg-green-400
             rounded
             px-2
-            py-1
+            py-1.5
             font-bold
             text-gray-600
             hover:bg-gray-400 hover:text-red-900 hover:border-gray-400
