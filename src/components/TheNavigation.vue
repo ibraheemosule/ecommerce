@@ -224,9 +224,9 @@
             />
           </div>
           <div class="ml-3">
-            <div class="text-base font-medium leading-none">Tom Cook</div>
+            <div class="text-base font-medium leading-none">{{ name }}</div>
             <div class="text-sm font-medium leading-none text-gray-400">
-              tom@example.com
+              {{ email }}
             </div>
           </div>
           <router-link
@@ -357,7 +357,9 @@ export default {
       navigation: ["Homepage", "About Us", "Our Products", "Contact Us"],
       signin: computed(() => store.getters["Firebase/signin"]),
       open: false,
+      name: computed(() => store.getters["Firebase/name"]),
       image: computed(() => store.getters["Firebase/image"]),
+      email: computed(() => store.getters["Firebase/email"]),
       selectedProducts: computed(
         () => store.state.firstModule.selectedProducts.length
       ),
