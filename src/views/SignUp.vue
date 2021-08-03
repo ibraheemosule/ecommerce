@@ -25,7 +25,7 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
             relative
@@ -46,7 +46,7 @@
           >
             {{ placeholder }}
             <input
-              class="box-border w-1 h-1 absolute rounded-xl border-0"
+              class="box-border w-1 h-1 absolute border-0"
               type="file"
               accept="image/jpg, image/jpeg"
               id="picture"
@@ -66,14 +66,14 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
         >
           <input
             v-model="account_name"
-            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            class="box-border w-full py-1 px-3 border-0"
             type="text"
             required
             id="account_name"
@@ -91,14 +91,14 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
         >
           <input
             v-model="email"
-            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            class="box-border w-full py-1 px-3 border-0"
             type="email"
             required
             id="email"
@@ -113,14 +113,15 @@
           flex-grow
           relative
           ml-1
-          rounded-full
+          my-2
+          rounded-lg
           overflow-hidden
           border-solid border-2 border-gray-500
         "
       >
         <input
           v-model="password"
-          class="box-border w-full py-1 px-3 rounded-xl border-0"
+          class="box-border w-full py-1 px-3 border-0"
           type="password"
           required
           id="password"
@@ -153,14 +154,14 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
         >
           <select
             v-model="bank_name"
-            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            class="box-border w-full py-1 px-3 border-0"
             required
             name="bank_name"
             id="bank_name"
@@ -181,14 +182,14 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
         >
           <input
             v-model="account_number"
-            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            class="box-border w-full py-1 px-3 border-0"
             type="text"
             required
             id="account_number"
@@ -206,7 +207,7 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
@@ -214,7 +215,7 @@
           <input
             v-model="phone"
             pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
-            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            class="box-border w-full py-1 px-3 border-0"
             type="tel"
             required
             id="phone"
@@ -232,14 +233,14 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
         >
           <textarea
             v-model="address"
-            class="box-border w-full h-full m-0 py-1 px-3 rounded-xl border-0"
+            class="box-border w-full h-full m-0 py-1 px-3 border-0"
             type="text"
             required
             id="address"
@@ -407,5 +408,6 @@ select:focus-visible {
 }
 select {
   cursor: pointer;
+  background: transparent;
 }
 </style>

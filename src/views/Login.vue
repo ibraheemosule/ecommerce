@@ -26,14 +26,14 @@
           class="
             flex-grow
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
         >
           <input
             v-model="email"
-            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            class="box-border w-full py-1 px-3 border-0"
             type="email"
             required
             id="email"
@@ -51,14 +51,14 @@
             flex-grow
             relative
             ml-1
-            rounded-full
+            rounded-lg
             overflow-hidden
             border-solid border-2 border-gray-500
           "
         >
           <input
             v-model="password"
-            class="box-border w-full py-1 px-3 rounded-xl border-0"
+            class="box-border w-full py-1 px-3 border-0"
             type="password"
             required
             id="password"
@@ -100,6 +100,12 @@
         >
           Sign In
         </button>
+        <div class="text-gray-600 mt-6 text-sm">
+          Don't Have An Account?
+          <router-link :to="{ name: 'SignUp' }" class="text-red-600"
+            >Sign Up Here</router-link
+          >
+        </div>
       </div>
     </form>
     <Modal
