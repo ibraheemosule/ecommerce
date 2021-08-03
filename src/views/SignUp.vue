@@ -410,4 +410,9 @@ select {
   cursor: pointer;
   background: transparent;
 }
+input,
+textarea,
+select {
+  padding: 0.5em 1em !important;
+}
 </style>
