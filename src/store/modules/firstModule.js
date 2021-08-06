@@ -26,7 +26,7 @@ export default {
     },
   },
   actions: {
-    async fetchApi({ state, commit }) {
+    async fetchApi({ commit }) {
       try {
         const allShirts = await axios
           .get("https://api.pexels.com/v1/search?query=shirt", {
@@ -42,7 +42,7 @@ export default {
               "setHomeImage",
               rootPhoto[Math.round(Math.random() * 10)].src.original
             );
-            console.log(state.homeImage);
+
             return res.data.photos.map((photo) => {
               return photo.src.medium;
             });
