@@ -18,6 +18,7 @@
   >
     <img
       :src="image"
+      loading="lazy"
       class="image object-cover absolute top-0 left-0 h-full w-full opacity-20"
       alt="hot deals"
     />

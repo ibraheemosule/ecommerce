@@ -13,6 +13,7 @@ export default {
       rootPants: "",
       rootCaps: "",
       selectedProducts: [],
+      homeImage: "",
     };
   },
   getters: {
@@ -25,7 +26,7 @@ export default {
     },
   },
   actions: {
-    async fetchApi({ commit }) {
+    async fetchApi({ state, commit }) {
       try {
         const allShirts = await axios
           .get("https://api.pexels.com/v1/search?query=shirt", {
@@ -37,6 +38,11 @@ export default {
           .then((res) => {
             const rootPhoto = res.data.photos;
             commit("setRootShirts", rootPhoto);
+            commit(
+              "setHomeImage",
+              rootPhoto[Math.round(Math.random() * 10)].src.original
+            );
+            console.log(state.homeImage);
             return res.data.photos.map((photo) => {
               return photo.src.medium;
             });
@@ -121,5 +127,6 @@ export default {
     setRootCaps: (state, val) => (state.rootCaps = val),
     setAllCaps: (state, val) => (state.allCaps = val),
     setSelectedProducts: (state, val) => (state.selectedProducts = val),
+    setHomeImage: (state, val) => (state.homeImage = val),
   },
 };

@@ -3,7 +3,7 @@
     <div
       id="myModal"
       class="modal"
-      :style="modal === true ? { display: 'block' } : { display: 'none' }"
+      :style="modal === true ? { display: 'flex' } : { display: 'none' }"
     >
       <div class="modal-content">
         <p>{{ modalText }}</p>
@@ -29,7 +29,7 @@ export default {
 
     const close = () => {
       emit("close");
-      router.replace("/products");
+      router.replace("/cart");
     };
 
     window.onclick = function (event) {
@@ -52,6 +52,8 @@ export default {
 .modal {
   display: none;
   position: fixed;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
   left: 0;
   top: 0;
@@ -71,6 +73,9 @@ export default {
   border: 1px solid #888;
   width: 40%;
   border-radius: 20px;
+  @media (max-width: 600px) {
+    width: 80%;
+  }
 }
 
 .close {

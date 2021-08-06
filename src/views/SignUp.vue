@@ -214,13 +214,13 @@
         >
           <input
             v-model="phone"
-            pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
+            pattern="[0-9]{11}"
             class="box-border w-full py-1.5 px-3 border-0"
             type="tel"
             required
             id="phone"
             name="phone"
-            placeholder="Phone No (XXXX-XXX-XXXX)"
+            placeholder="Phone Number (11 Digits)"
           />
         </div>
       </div>

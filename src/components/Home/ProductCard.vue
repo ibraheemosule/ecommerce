@@ -25,7 +25,12 @@
         bg-gray-600
       "
     >
-      <img class="w-full h-full object-cover" :src="itemImage" alt="shoe" />
+      <img
+        class="w-full h-full object-cover"
+        :src="itemImage"
+        alt="shoe"
+        loading="lazy"
+      />
     </div>
     <div
       class="

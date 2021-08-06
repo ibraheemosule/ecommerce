@@ -36,6 +36,7 @@
             class="w-full h-full cover rounded-full"
             :src="image"
             alt=""
+            loading="lazy"
           />
           <img
             v-else

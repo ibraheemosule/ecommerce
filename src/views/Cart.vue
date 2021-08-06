@@ -44,6 +44,7 @@
               class="sm:w-full w-9/12 mx-auto rounded-full h-full object-fill"
               :src="photo.src.medium"
               alt="product image"
+              loading="lazy"
             />
           </div>
           <div

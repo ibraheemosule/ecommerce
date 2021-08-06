@@ -30,6 +30,7 @@
               w-full
               h-full
             "
+            loading="lazy"
             :src="photo.src.medium"
             alt="first image"
           />

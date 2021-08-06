@@ -1,6 +1,6 @@
 <template>
   <div>
-    <carousel />
+    <Hero />
     <Header />
     <products />
     <article class="hot-deals sm:mx-16 mb-32 flex bg-gray-200">
@@ -9,6 +9,7 @@
           class="w-full h-full object-cover opacity-60"
           :src="image"
           alt="another image"
+          loading="lazy"
         />
       </div>
       <div
@@ -69,7 +70,7 @@
 
 <script>
 import { reactive, toRefs, computed } from "vue";
-import Carousel from "./Carousel.vue";
+import Hero from "./Hero.vue";
 import Header from "./Header.vue";
 import Products from "./Products.vue";
 import NewsLetter from "./NewsLetter.vue";
@@ -78,7 +79,7 @@ import { useRouter } from "vue-router";
 
 export default {
   components: {
-    Carousel,
+    Hero,
     Header,
     Products,
     NewsLetter,
@@ -87,7 +88,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     const data = reactive({
-      image: computed(() => store.state.firstModule.allShirts[7]),
+      image: computed(() => store.state.firstModule.homeImage),
     });
     const toProducts = () => router.push("/products");
 

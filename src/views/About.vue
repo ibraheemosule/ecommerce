@@ -21,6 +21,7 @@
           class="border-solid rounded"
           src="@/assets/Images/about.jpg"
           alt="about us image"
+          loading="lazy"
         />
       </div>
       <div class="sm:w-1/2 w-full text-gray-600">
