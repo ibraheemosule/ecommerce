@@ -4,7 +4,7 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyAygMpaNlphLmVREujJIvfEZl_TtBEUW8k",
+  apiKey: process.env.VUE_APP_FIREBASE_KEY,
   authDomain: "e-commerce-ced37.firebaseapp.com",
   databaseURL: "https://e-commerce-ced37-default-rtdb.firebaseio.com",
   projectId: "e-commerce-ced37",

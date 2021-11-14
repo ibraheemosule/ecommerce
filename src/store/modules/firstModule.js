@@ -31,8 +31,7 @@ export default {
         const allShirts = await axios
           .get("https://api.pexels.com/v1/search?query=shirt", {
             headers: {
-              Authorization:
-                "563492ad6f91700001000001d67fa52bb87043faaddbf31f8919cdb5",
+              Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
           .then((res) => {
@@ -50,8 +49,7 @@ export default {
         const allShoes = await axios
           .get("https://api.pexels.com/v1/search?query=shoe", {
             headers: {
-              Authorization:
-                "563492ad6f91700001000001d67fa52bb87043faaddbf31f8919cdb5",
+              Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
           .then((res) => {
@@ -64,8 +62,7 @@ export default {
         const allPants = await axios
           .get("https://api.pexels.com/v1/search?query=pant", {
             headers: {
-              Authorization:
-                "563492ad6f91700001000001d67fa52bb87043faaddbf31f8919cdb5",
+              Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
           .then((res) => {
@@ -78,8 +75,7 @@ export default {
         const allCaps = await axios
           .get("https://api.pexels.com/v1/search?query=CAP", {
             headers: {
-              Authorization:
-                "563492ad6f91700001000001d67fa52bb87043faaddbf31f8919cdb5",
+              Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
           .then((res) => {
