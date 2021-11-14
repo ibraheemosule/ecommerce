@@ -17,9 +17,9 @@
         rounded-full
         border-solid
         overflow-hidden
-        xl:w-64
-        lg:w-48
-        md:w-40
+        xl:w-64 xl:h-64
+        lg:w-48 lg:h-48
+        md:w-40 md:h-40
         w-64
         h-64
         bg-gray-600
@@ -39,6 +39,9 @@
         rounded-lg
         my-6
         p-6
+        md:h-96
+        lg:h-68
+        xl:h-64
         h-64
       "
     >
@@ -54,23 +57,23 @@
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+  import { reactive, toRefs } from "vue";
 
-export default {
-  props: {
-    item: String,
-    itemImage: String,
-    description: String,
-  },
+  export default {
+    props: {
+      item: String,
+      itemImage: String,
+      description: String,
+    },
 
-  setup() {
-    const data = reactive({});
+    setup() {
+      const data = reactive({});
 
-    return {
-      ...toRefs(data),
-    };
-  },
-};
+      return {
+        ...toRefs(data),
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped></style>

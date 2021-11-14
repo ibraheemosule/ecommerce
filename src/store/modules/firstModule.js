@@ -17,10 +17,10 @@ export default {
     };
   },
   getters: {
-    totalAmount: (state) => {
+    totalAmount: state => {
       let amount = 0;
       state.selectedProducts.forEach(
-        (val) => (amount += Math.round(val.height / 100) * 100)
+        val => (amount += Math.round(val.height / 100) * 100)
       );
       return amount;
     },
@@ -34,7 +34,7 @@ export default {
               Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
-          .then((res) => {
+          .then(res => {
             const rootPhoto = res.data.photos;
             commit("setRootShirts", rootPhoto);
             commit(
@@ -42,7 +42,7 @@ export default {
               rootPhoto[Math.round(Math.random() * 10)].src.original
             );
 
-            return res.data.photos.map((photo) => {
+            return res.data.photos.map(photo => {
               return photo.src.medium;
             });
           });
@@ -52,10 +52,10 @@ export default {
               Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
-          .then((res) => {
+          .then(res => {
             const rootPhoto = res.data.photos;
             commit("setRootShoes", rootPhoto);
-            return res.data.photos.map((photo) => {
+            return res.data.photos.map(photo => {
               return photo.src.medium;
             });
           });
@@ -65,10 +65,10 @@ export default {
               Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
-          .then((res) => {
+          .then(res => {
             const rootPhoto = res.data.photos;
             commit("setRootPants", rootPhoto);
-            return res.data.photos.map((photo) => {
+            return res.data.photos.map(photo => {
               return photo.src.medium;
             });
           });
@@ -78,10 +78,10 @@ export default {
               Authorization: process.env.VUE_APP_PEXEL_KEY,
             },
           })
-          .then((res) => {
+          .then(res => {
             const rootPhoto = res.data.photos;
             commit("setRootCaps", rootPhoto);
-            return res.data.photos.map((photo) => {
+            return res.data.photos.map(photo => {
               return photo.src.medium;
             });
           });
@@ -97,7 +97,7 @@ export default {
     selected({ state, commit }, { product }) {
       const selectedProducts = state.selectedProducts;
       const checkProduct = selectedProducts.some(
-        (val) => val.id === product[0].id
+        val => val.id === product[0].id
       );
       if (!checkProduct) {
         commit("setSelectedProducts", [...selectedProducts, ...product]);
@@ -107,7 +107,7 @@ export default {
     },
     removed({ state, commit }, { product }) {
       const remove = state.selectedProducts.filter(
-        (val) => val.id !== product[0].id
+        val => val.id !== product[0].id
       );
       commit("setSelectedProducts", [...remove]);
     },
